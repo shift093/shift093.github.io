@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ubuntu 18.04 安裝 Docker (支援 GPU) | HTTP/1.1 200 OK</title><meta name="keywords" content="docker,gpu'"><meta name="author" content="Joe"><meta name="copyright" content="Joe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="前言Docker 是一個開源專案，誕生於 2013 年初，最初是 dotCloud 公司內部的一個業餘專案。它基於 Google 公司推出的 Go 語言實作。 專案後來加入了 Linux 基金會，遵從了 Apache 2.0 協議，原始碼在 GitHub 上進行維護。 Docker 自開源後受到廣泛的關注和討論，以至於 dotCloud 公司後來都改名為 Docker Inc。Redhat 已經在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 18.04 安裝 Docker (支援 GPU)">
+<meta property="og:url" content="https://shift093.github.io/2020/12/01/Ubuntu-18-04-%E5%AE%89%E8%A3%9D-Docker-%E6%94%AF%E6%8F%B4-GPU/index.html">
+<meta property="og:site_name" content="HTTP&#x2F;1.1 200 OK">
+<meta property="og:description" content="前言Docker 是一個開源專案，誕生於 2013 年初，最初是 dotCloud 公司內部的一個業餘專案。它基於 Google 公司推出的 Go 語言實作。 專案後來加入了 Linux 基金會，遵從了 Apache 2.0 協議，原始碼在 GitHub 上進行維護。 Docker 自開源後受到廣泛的關注和討論，以至於 dotCloud 公司後來都改名為 Docker Inc。Redhat 已經在">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-12-01T06:09:54.000Z">
+<meta property="article:modified_time" content="2020-12-01T06:19:32.122Z">
+<meta property="article:author" content="Joe">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="gpu&#39;">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shift093.github.io/2020/12/01/Ubuntu-18-04-%E5%AE%89%E8%A3%9D-Docker-%E6%94%AF%E6%8F%B4-GPU/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-01 14:19:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">載入中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/ShowIndexStdImg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">標籤</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分類</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HTTP/1.1 200 OK</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Ubuntu 18.04 安裝 Docker (支援 GPU)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">發表於</span><time class="post-meta-date-created" datetime="2020-12-01T06:09:54.000Z" title="發表於 2020-12-01 14:09:54">2020-12-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新於</span><time class="post-meta-date-updated" datetime="2020-12-01T06:19:32.122Z" title="更新於 2020-12-01 14:19:32">2020-12-01</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字數總計:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">閲讀時長:</span><span>5分鐘</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Docker 是一個開源專案，誕生於 2013 年初，最初是 dotCloud 公司內部的一個業餘專案。它基於 Google 公司推出的 Go 語言實作。 專案後來加入了 Linux 基金會，遵從了 Apache 2.0 協議，原始碼在 GitHub 上進行維護。</p>
+<p>Docker 自開源後受到廣泛的關注和討論，以至於 dotCloud 公司後來都改名為 Docker Inc。Redhat 已經在其 RHEL6.5 中集中支援 Docker；Google 也在其 PaaS 產品中廣泛應用。</p>
+<p>Docker 專案的目標是實作輕量級的作業系統虛擬化解決方案。 Docker 的基礎是 Linux 容器（LXC）等技術。</p>
+<p>在 LXC 的基礎上 Docker 進行了進一步的封裝，讓使用者不需要去關心容器的管理，使得操作更為簡便。使用者操作 Docker 的容器就像操作一個快速輕量級的虛擬機一樣簡單。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/dockerCmd.png" alt="img"></p>
+<hr>
+<h2 id="Docker-基本概念"><a href="#Docker-基本概念" class="headerlink" title="Docker 基本概念"></a>Docker 基本概念</h2><h3 id="映像檔-Image"><a href="#映像檔-Image" class="headerlink" title="映像檔 (Image)"></a>映像檔 (Image)</h3><ul>
+<li>Docker 映像檔就是一個唯讀的模板。</li>
+<li>映像檔可以用來建立 Docker 容器。</li>
+<li>Docker 提供了一個很簡單的機制來建立映像檔或者更新現有的映像檔，使用者甚至可以直接從Docker Hub下載一個已經做好的映像檔來直接使用。</li>
+</ul>
+<h3 id="容器-Container"><a href="#容器-Container" class="headerlink" title="容器 (Container)"></a>容器 (Container)</h3><ul>
+<li>容器是從映像檔建立的執行實例。它可以被啟動、開始、停止、刪除。每個容器都是相互隔離的、保證安全的平台。</li>
+<li>可以把容器看做是一個簡易版的 Linux 環境（包括root使用者權限、程式空間、使用者空間和網路空間等）和在其中執行的應用程式。</li>
+</ul>
+<h3 id="倉庫-Repository"><a href="#倉庫-Repository" class="headerlink" title="倉庫 (Repository)"></a>倉庫 (Repository)</h3><ul>
+<li>倉庫分為公開倉庫（Public）和私有倉庫（Private）兩種形式。</li>
+<li>最大的公開倉庫是 <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a>，存放了數量龐大的映像檔供使用者下載。</li>
+<li>NVIDIA AI 倉庫為 <a target="_blank" rel="noopener" href="https://ngc.nvidia.com/">NGC</a>，存放了 AI 常用框架的映像檔供使用者下載。</li>
+</ul>
+<hr>
+<h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><h3 id="系統環境"><a href="#系統環境" class="headerlink" title="系統環境"></a>系統環境</h3><ul>
+<li>OS：Ubuntu 18.04</li>
+<li>Docker：19.03</li>
+<li>NVIDIA Container Toolkit：1.2.0</li>
+</ul>
+<h3 id="步驟"><a href="#步驟" class="headerlink" title="步驟"></a>步驟</h3><h4 id="安裝相依性套件"><a href="#安裝相依性套件" class="headerlink" title="安裝相依性套件"></a>安裝相依性套件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加-Docker-GPG-key"><a href="#添加-Docker-GPG-key" class="headerlink" title="添加 Docker GPG key"></a>添加 Docker GPG key</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line">sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加-Docker-套件庫-穩定版"><a href="#添加-Docker-套件庫-穩定版" class="headerlink" title="添加 Docker 套件庫 (穩定版)"></a>添加 Docker 套件庫 (穩定版)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="安裝-docker-ce-docker-ce-cli-containerd-io"><a href="#安裝-docker-ce-docker-ce-cli-containerd-io" class="headerlink" title="安裝 docker-ce docker-ce-cli containerd.io"></a>安裝 <code>docker-ce</code> <code>docker-ce-cli</code> <code>containerd.io</code></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加-NVIDIA-Docker-套件庫"><a href="#添加-NVIDIA-Docker-套件庫" class="headerlink" title="添加 NVIDIA Docker 套件庫"></a>添加 NVIDIA Docker 套件庫</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">distribution=$(. /etc/os-release;echo $ID$VERSION_ID)</span><br><span class="line">curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -</span><br><span class="line">curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list</span><br></pre></td></tr></table></figure>
+
+<h4 id="安裝-NVIDIA-Container-Toolkit"><a href="#安裝-NVIDIA-Container-Toolkit" class="headerlink" title="安裝 NVIDIA Container Toolkit"></a>安裝 NVIDIA Container Toolkit</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install nvidia-container-toolkit</span><br></pre></td></tr></table></figure>
+
+<h4 id="重啟-Docker"><a href="#重啟-Docker" class="headerlink" title="重啟 Docker"></a>重啟 Docker</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h4 id="執行-Docker-不加-Sudo-選"><a href="#執行-Docker-不加-Sudo-選" class="headerlink" title="執行 Docker 不加 Sudo (選)"></a>執行 Docker 不加 Sudo (選)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo groupadd docker</span><br><span class="line">sudo gpasswd -a $&#123;USER&#125; docker</span><br><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Docker-基本操作"><a href="#Docker-基本操作" class="headerlink" title="Docker 基本操作"></a>Docker 基本操作</h2><h3 id="搜尋映像檔-search"><a href="#搜尋映像檔-search" class="headerlink" title="搜尋映像檔 search"></a>搜尋映像檔 <code>search</code></h3><p>在 Docker Hub 上尋找，會顯示熱度前幾名的映像檔。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker search &lt;Image Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/search.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/search.PNG" alt="Docker search 範例"></a></p>
+<h3 id="取得映像檔-pull"><a href="#取得映像檔-pull" class="headerlink" title="取得映像檔 pull"></a>取得映像檔 <code>pull</code></h3><p>將映像檔從倉庫下載到本機。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker pull &lt;Image Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/pull.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/pull.PNG" alt="Docker pull 範例"></a></p>
+<h3 id="全部映像檔-images"><a href="#全部映像檔-images" class="headerlink" title="全部映像檔 images"></a>全部映像檔 <code>images</code></h3><p>顯示本機已下載的映像檔。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker images</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/images.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/images.PNG" alt="Docker images 範例"></a></p>
+<h3 id="建立容器-run"><a href="#建立容器-run" class="headerlink" title="建立容器 run"></a>建立容器 <code>run</code></h3><p>建立容器並啟用。</p>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-it</td>
+<td>配置一個虛擬的終端機以及讓標準輸入維持在打開的狀態</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>背景執行</td>
+</tr>
+<tr>
+<td>–rm</td>
+<td>Container 執行結束後自動刪除</td>
+</tr>
+<tr>
+<td>–name</td>
+<td>為 Container 命名</td>
+</tr>
+<tr>
+<td>-p :</td>
+<td>將主機的 Port 綁定到 Container 的Port</td>
+</tr>
+<tr>
+<td>-v :</td>
+<td>將主機的資料夾掛載到 Container 資料夾</td>
+</tr>
+<tr>
+<td>–gpus ‘“device=“‘</td>
+<td>指定使用 GPU 編號</td>
+</tr>
+<tr>
+<td>–gpus 2</td>
+<td>指定使用前幾個 GPU</td>
+</tr>
+<tr>
+<td>–gpus all</td>
+<td>使用全部的 GPU</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker run -it --name test --gpus all -p 20000:8888 -v /raid:/data nvcr.io/nvidia/tensorflow:20.06-tf2-py3 bash</span><br></pre></td></tr></table></figure>
+
+<p>可透過 <code>exit</code> 中回到本機系統，但第一次離開會停止容器的運行。</p>
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/run.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/run.PNG" alt="Docker run 範例"></a></p>
+<h3 id="全部容器-ps-a"><a href="#全部容器-ps-a" class="headerlink" title="全部容器 ps -a"></a>全部容器 <code>ps -a</code></h3><p>顯示本機已建立的容器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/ps.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/ps.PNG" alt="顯示本機已建立的容器"></a></p>
+<h3 id="進入運行中的容器"><a href="#進入運行中的容器" class="headerlink" title="進入運行中的容器"></a>進入運行中的容器</h3><h4 id="使用-exec"><a href="#使用-exec" class="headerlink" title="使用 exec"></a>使用 <code>exec</code></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker exec -it &lt;Container ID or Name&gt; bash</span><br></pre></td></tr></table></figure>
+
+<p>執行 exit 時，不會中止容器。</p>
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/exec.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/exec.PNG" alt="進入運行中的容器"></a></p>
+<h4 id="使用-attach"><a href="#使用-attach" class="headerlink" title="使用 attach"></a>使用 <code>attach</code></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker attach &lt;Container ID or Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>執行 exit 時，就會中止容器。</p>
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/attach.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/attach.PNG" alt="進入運行中的容器"></a></p>
+<h3 id="啟用容器-start"><a href="#啟用容器-start" class="headerlink" title="啟用容器 start"></a>啟用容器 <code>start</code></h3><p>啟動停止的容器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker start &lt;Container ID or Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/start.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/start.PNG" alt="啟動停止的容器"></a></p>
+<h3 id="停止容器-stop"><a href="#停止容器-stop" class="headerlink" title="停止容器 stop"></a>停止容器 <code>stop</code></h3><p>停止啟用的容器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker stop &lt;Container ID or Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/stop.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/stop.PNG" alt="停止啟用的容器"></a></p>
+<h3 id="打包容器-commit"><a href="#打包容器-commit" class="headerlink" title="打包容器 commit"></a>打包容器 <code>commit</code></h3><p>將容器包成映像檔。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker commit &lt;Container ID or Name&gt; &lt;Image Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/commit.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/commit.PNG" alt="將容器包成映像檔"></a></p>
+<h3 id="打包映像檔-save"><a href="#打包映像檔-save" class="headerlink" title="打包映像檔 save"></a>打包映像檔 <code>save</code></h3><p>將映像檔打包成檔案。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker save -o &lt;File Name&gt;.tar &lt;Image Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/save.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/save.PNG" alt="將映像檔打包成檔案"></a></p>
+<h3 id="載入映像檔-load"><a href="#載入映像檔-load" class="headerlink" title="載入映像檔 load"></a>載入映像檔 <code>load</code></h3><p>將打包的映像檔檔案載入本機。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker load -i &lt;File Name&gt;.tar</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/load.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/load.PNG" alt="將打包的映像檔檔案載入本機"></a></p>
+<h3 id="刪除容器-rm"><a href="#刪除容器-rm" class="headerlink" title="刪除容器 rm"></a>刪除容器 <code>rm</code></h3><p>刪除容器，如容器還在運行，可加 <code>-f</code> ，強制刪除。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker rm &lt;Container ID or Name&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 強制刪除</span></span><br><span class="line">sudo docker rm -f &lt;Container ID or Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/rm.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/rm.PNG" alt="刪除容器"></a></p>
+<h3 id="刪除映像檔-rmi"><a href="#刪除映像檔-rmi" class="headerlink" title="刪除映像檔 rmi"></a>刪除映像檔 <code>rmi</code></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line">sudo docker rmi &lt;Image Name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/rmi.PNG"><img src= "/img/loading.gif" data-lazy-src="https://roychou121.github.io/2020/07/13/ubuntu-install-docker/rmi.PNG" alt="刪除映像檔"></a></p>
+<hr>
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="安裝-nvidia-docker2"><a href="#安裝-nvidia-docker2" class="headerlink" title="安裝 nvidia-docker2"></a>安裝 <code>nvidia-docker2</code></h3><p>Docker 版本小於 <code>19.03</code>，又要使用 GPU 了話，要改安裝 <code>nvidia-docker2</code>，不過此套件過一陣子將不再支援，不建議安裝。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Shell</span><br><span class="line"><span class="meta">#</span><span class="bash"> 此範例 Docker 版本為 18.06</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce=18.06.1~ce~3-0~ubuntu</span><br><span class="line">curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -</span><br><span class="line">distribution=$(. /etc/os-release;echo $ID$VERSION_ID)</span><br><span class="line">curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y nvidia-docker2=2.0.3+docker18.06.1-1 nvidia-container-runtime=2.0.0+docker18.06.1-1</span><br><span class="line">sudo pkill -SIGHUP dockerd</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章連結: </span><span class="post-copyright-info"><a href="https://shift093.github.io/2020/12/01/Ubuntu-18-04-%E5%AE%89%E8%A3%9D-Docker-%E6%94%AF%E6%8F%B4-GPU/">https://shift093.github.io/2020/12/01/Ubuntu-18-04-%E5%AE%89%E8%A3%9D-Docker-%E6%94%AF%E6%8F%B4-GPU/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://shift093.github.io" target="_blank">HTTP/1.1 200 OK</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/docker/">docker</a><a class="post-meta__tags" href="/tags/gpu/">gpu'</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/01/categories/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">categories</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/ShowIndexStdImg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Joe</div><div class="author-info__description">Segmentation fault</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">標籤</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分類</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/shift093"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/shift093" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:shift093@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Thank you for visiting my website.</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目錄</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">Docker 基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%A0%E5%83%8F%E6%AA%94-Image"><span class="toc-number">2.1.</span> <span class="toc-text">映像檔 (Image)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8-Container"><span class="toc-number">2.2.</span> <span class="toc-text">容器 (Container)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%89%E5%BA%AB-Repository"><span class="toc-number">2.3.</span> <span class="toc-text">倉庫 (Repository)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D"><span class="toc-number">3.</span> <span class="toc-text">安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%B5%B1%E7%92%B0%E5%A2%83"><span class="toc-number">3.1.</span> <span class="toc-text">系統環境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%A9%9F"><span class="toc-number">3.2.</span> <span class="toc-text">步驟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D%E7%9B%B8%E4%BE%9D%E6%80%A7%E5%A5%97%E4%BB%B6"><span class="toc-number">3.2.1.</span> <span class="toc-text">安裝相依性套件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-Docker-GPG-key"><span class="toc-number">3.2.2.</span> <span class="toc-text">添加 Docker GPG key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-Docker-%E5%A5%97%E4%BB%B6%E5%BA%AB-%E7%A9%A9%E5%AE%9A%E7%89%88"><span class="toc-number">3.2.3.</span> <span class="toc-text">添加 Docker 套件庫 (穩定版)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-docker-ce-docker-ce-cli-containerd-io"><span class="toc-number">3.2.4.</span> <span class="toc-text">安裝 docker-ce docker-ce-cli containerd.io</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0-NVIDIA-Docker-%E5%A5%97%E4%BB%B6%E5%BA%AB"><span class="toc-number">3.2.5.</span> <span class="toc-text">添加 NVIDIA Docker 套件庫</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-NVIDIA-Container-Toolkit"><span class="toc-number">3.2.6.</span> <span class="toc-text">安裝 NVIDIA Container Toolkit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%95%9F-Docker"><span class="toc-number">3.2.7.</span> <span class="toc-text">重啟 Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%B7%E8%A1%8C-Docker-%E4%B8%8D%E5%8A%A0-Sudo-%E9%81%B8"><span class="toc-number">3.2.8.</span> <span class="toc-text">執行 Docker 不加 Sudo (選)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">Docker 基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E5%B0%8B%E6%98%A0%E5%83%8F%E6%AA%94-search"><span class="toc-number">4.1.</span> <span class="toc-text">搜尋映像檔 search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%96%E5%BE%97%E6%98%A0%E5%83%8F%E6%AA%94-pull"><span class="toc-number">4.2.</span> <span class="toc-text">取得映像檔 pull</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E6%98%A0%E5%83%8F%E6%AA%94-images"><span class="toc-number">4.3.</span> <span class="toc-text">全部映像檔 images</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E5%AE%B9%E5%99%A8-run"><span class="toc-number">4.4.</span> <span class="toc-text">建立容器 run</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E5%AE%B9%E5%99%A8-ps-a"><span class="toc-number">4.5.</span> <span class="toc-text">全部容器 ps -a</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%B2%E5%85%A5%E9%81%8B%E8%A1%8C%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">4.6.</span> <span class="toc-text">進入運行中的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-exec"><span class="toc-number">4.6.1.</span> <span class="toc-text">使用 exec</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-attach"><span class="toc-number">4.6.2.</span> <span class="toc-text">使用 attach</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%9F%E7%94%A8%E5%AE%B9%E5%99%A8-start"><span class="toc-number">4.7.</span> <span class="toc-text">啟用容器 start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8-stop"><span class="toc-number">4.8.</span> <span class="toc-text">停止容器 stop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%AE%B9%E5%99%A8-commit"><span class="toc-number">4.9.</span> <span class="toc-text">打包容器 commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E6%98%A0%E5%83%8F%E6%AA%94-save"><span class="toc-number">4.10.</span> <span class="toc-text">打包映像檔 save</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BC%89%E5%85%A5%E6%98%A0%E5%83%8F%E6%AA%94-load"><span class="toc-number">4.11.</span> <span class="toc-text">載入映像檔 load</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AA%E9%99%A4%E5%AE%B9%E5%99%A8-rm"><span class="toc-number">4.12.</span> <span class="toc-text">刪除容器 rm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AA%E9%99%A4%E6%98%A0%E5%83%8F%E6%AA%94-rmi"><span class="toc-number">4.13.</span> <span class="toc-text">刪除映像檔 rmi</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%9C%E5%85%85"><span class="toc-number">5.</span> <span class="toc-text">補充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%9D-nvidia-docker2"><span class="toc-number">5.1.</span> <span class="toc-text">安裝 nvidia-docker2</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/01/Ubuntu-18-04-%E5%AE%89%E8%A3%9D-Docker-%E6%94%AF%E6%8F%B4-GPU/" title="Ubuntu 18.04 安裝 Docker (支援 GPU)"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Ubuntu 18.04 安裝 Docker (支援 GPU)"/></a><div class="content"><a class="title" href="/2020/12/01/Ubuntu-18-04-%E5%AE%89%E8%A3%9D-Docker-%E6%94%AF%E6%8F%B4-GPU/" title="Ubuntu 18.04 安裝 Docker (支援 GPU)">Ubuntu 18.04 安裝 Docker (支援 GPU)</a><time datetime="2020-12-01T06:09:54.000Z" title="發表於 2020-12-01 14:09:54">2020-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/01/categories/" title="categories"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="categories"/></a><div class="content"><a class="title" href="/2020/12/01/categories/" title="categories">categories</a><time datetime="2020-12-01T03:55:03.000Z" title="發表於 2020-12-01 11:55:03">2020-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/01/hello-world/" title="Hello World"><img data-lazy-src="/%E7%B8%AE%E7%95%A5%E5%9C%96" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2020/12/01/hello-world/" title="Hello World">Hello World</a><time datetime="2020-11-30T16:00:00.000Z" title="發表於 2020-12-01 00:00:00">2020-12-01</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Joe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主題 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到頂部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>
