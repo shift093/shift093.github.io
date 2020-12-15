@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-TW" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NGC SETUP &amp; API KEY | HTTP/1.1　&quot;200&quot;　OK</title><meta name="keywords" content="NGC"><meta name="author" content="Joe"><meta name="copyright" content="Joe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NGC SETUP &amp; API KEY">
+<meta property="og:url" content="https://shift093.github.io/2020/12/15/NGC-SETUP-API-KEY/index.html">
+<meta property="og:site_name" content="HTTP&#x2F;1.1　&quot;200&quot;　OK">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-12-15T05:53:17.000Z">
+<meta property="article:modified_time" content="2020-12-15T05:58:48.447Z">
+<meta property="article:author" content="Joe">
+<meta property="article:tag" content="NGC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shift093.github.io/2020/12/15/NGC-SETUP-API-KEY/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '複製成功',
+    error: '複製錯誤',
+    noSupport: '瀏覽器不支援'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '剛剛',
+    min: '分鐘前',
+    hour: '小時前',
+    day: '天前',
+    month: '個月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切換為繁體","cht_to_chs":"你已切換為簡體","day_to_night":"你已切換為深色模式","night_to_day":"你已切換為淺色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-15 13:58:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">載入中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/img/ShowIndexStdImg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">標籤</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分類</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://hackmd.io/eATYDQMkSsiAx_3STb9aoQ"><i class="fa-fw fas fa-thumbtack"></i><span> Guides</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HTTP/1.1　&quot;200&quot;　OK</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://hackmd.io/eATYDQMkSsiAx_3STb9aoQ"><i class="fa-fw fas fa-thumbtack"></i><span> Guides</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">NGC SETUP &amp; API KEY</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">發表於</span><time class="post-meta-date-created" datetime="2020-12-15T05:53:17.000Z" title="發表於 2020-12-15 13:53:17">2020-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新於</span><time class="post-meta-date-updated" datetime="2020-12-15T05:58:48.447Z" title="更新於 2020-12-15 13:58:48">2020-12-15</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字數總計:</span><span class="word-count">6</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">閲讀時長:</span><span>1分鐘</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">閱讀量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="f9c13f7051dfcaf4e4d2babc40ec90e294ec8978fbef95c3e0dc0ff0997daf4a">45395b3a9d8e5cd6e381edb8126f3d64db63e7b20f82201fb991b0d4d5a666d91f80fce3e2b998b5404717aa39991145e03e6397d4bae7ca9680543ff2430209ed8e5c9cb9b3d501aaa1abb9373f8ae775bcacd8261fe5659c75cefd19b6281e14fb4773f057f19253253467caec9971d154ce014173640c3ff1c8c624bbdae83e6a175dc73e5e58fbbdd83103123bdb752442d6e791b0aec3f0889abed43f6f500bf82924ecb2c0639687615646da98914fec48a2c639e538c8264d13a5b936bc754f88a1126a84aead34f80263dd73e087d54a3bc7fccb61176dec046d1885560a77a0e5bd0fa4b6220f3e8b4dc35420ac70cf5d8e62be5860b93277d401d9921aa0c44f2ed43ff4e6f13cc7f978b2c709e2ace97d1d73e3f098a324dc6b22c140e0b4ad8201ca1ab58c986dabb936191dc0d2113b6b5734252d6bb0279191036290ffeaf07761032d4515d890af134c9c1bcdbfa27f118dbb4688a1210d3622ba55b51467ab7eef389cca8c45e1227a7f0b817a2cd3741445728d5f37ada3957d1d2d991dcf3a0e9dbfb21fcae9b574ac80a818ef536cb8267fd3d56ad49cd36f6e9aab020d41646bea1bccb8b774a53ea13cdb9666d4dd8b7d2a9342a07285d77b4ceb7d2c8b49c2db49937a54f057fe0c2451f6ecbb8e371c82638db0bd57ab86b5f46dd16d9ea914602da8490163506ff9038d8164a6121cfef65c8abebdf728fa200dbe3ce164c71cb0e7f532bf3b5702ebe7d0156a7f8a8d69426bf0dc6544b5445e194ad62580719fb3f6034778e43ae5ae185985cc79037a7e780dbecbe2a4e36bc58dc9f3a66172d68db36c7d552268f9e5d4ded8f5b772282d431ca0895dc9332247ee03ed860f8902b1c47e2450c688b382029149c20c7e4335c7dd98fde159e245bb2d14779ef60112ef0075ee8fdd7fcda26d6e6adb0709bb48bda746d2bf8d7ce4525f8c3caa6924da4e642d501bdcf04c5b95dd77f82474897720a7573e77a7f858f5e9132fbd9d0c6b3de8167fd6a241a3b58b7d94d5a53b9c33173c3acdd2a739edf6745a6df81e1fc331121c1c796bacba6bec2a85857865f1fbb37f6271b07954d8d8645d97aa75e46020e852d1d1f22c380dfbdd2e8d4b308fd9be4084dc2d1a744fb8012a1a006566b7c4a3a997a767ba2168890aa94f97643f2b9fd696876f027023307bcc9446b6f25292ae9a2e25f02fd4a427d1d8b69bb73126b38104192b9ae995d9b548047660143e52c5730dd74ebc530e45a89adfe1a99375beeb3bfdbbc7d4f443465c695a27e57f0bf3c90ba332008aee91cc8206033a6aaefb5b32f276cdec674689dd5c9b9d713fb47127d88d14c878ce57182b981b52fca809da621bd7f78e9772afa9b815cfcc716e6a23c6fefa64399075548958cb3f07ca571e20cbe53f24ce9c9d12e3a8125633f73cb5a05d4a88134e1b14162dfecbef772b6f158c3493207edd983e86280b009378d5186bf9fbce64efbe6f9ef143d080066a9151f64d73c98f442c90b074d74fc5c4f972a36b89f336277cd56fcc2b9d14183eb424f7f469ef92d45166aca3fa675dcfab018fe3d8b744be2027f8c4fa14308d4656177228d77a00935f8743be66ae73408fb6f03fe45eb2e78cad552a7286467ec8b090c17b2745e6645e5bf8219224ba0537af6201b3ad54143135c4a182a1429cbfa8294cb2eb6881cc69ddd71eff33fa288d915f4b175e2d887d428d8454aab46af8d5365b0599d8644b48f5ee728d1371533d62bd5d5d30123af29fc8a1aad79a770c4958d6bf12dba9455b128ac04d562190dd7c0a64af5aebc3661c1a8e8521e303d2c3d8847559c8739e92216f51d258298e0f76644ef53070d3a789b191bf47a2b5c18f867df6d3cebd306e3ad31ce124b21a4e655b1ef594f20f82abb89c87a70919a38faf1ad2107067e46a22aed736edc2090eaabf4b4769616b8994cf933094e753d5b2bf8606b2287a5deb87620acffc5298af9f04548006bdd40295f5a5a89c41328118f12e68f4c541efd97737c86e5742bde53495560a9c3f9bc189d36143e7c4c12f16232bcf6ee809ea2d95c19b7fde511f72118b39b3b1e756795eccec6ac1b7df7832e1e41948fd9d35cdb81c2d8d7c69ab306b287f4c73c02b11ad4dda5e9933bef2befb706da4dd59f2dcc6f332dd208bf5df4727e6484a546dbd66b23690bc596447390e82a195694776571aba8ee6010109c76d267f3a9cca0d650603bc5ee8a3e3da105830fce30f29df881e3240063fffaa687481b9b9a70d4f483124e96d86e89c454a81c5dba82c143dc2f8e4c1af551811be551be1c4b5c9016d403e85d07fb0622d95b8affd84fe3ba27a7abd7fc2fcf7cb8b8bd8cd0753aa38d7c37647c428aea3ff056ab4c90f78db7c8ee3d5d0d3db24a6e85e06f22ef324ede18d90dafe407b5d7400a948295530999c8d32ff62a82bc47dadeb6082dbe866a130a0f72d641d9c03ab6ad62e8aebbe466b2e46140faa1bdf680790cf29763bf6bc651319c2468d68a52b71edc355cda6a8b162e851d89565971c5147e22fcf6fc03e1d588896fb46a568e3d490cdb34a34a369628eb4034de327048ff6924cbe0f160e3b7b18cf2b8350e2f7970106d03eb7b192e3b3751f11b2c8467d3b692ea1190be2c8468a0332206184e44abfc25a8019539347c967c1c66f564107a5f811a41c16647b31f28d66efd3eaf4b55d41c1eab74aa72bc82d53c206d7193827507670559a0d0c3d4b6085cd86e8b2ea7be0b71e6d2da09aaa50f4b77e33e823ce054230ec05b4094924d7ddcb07d120eea13ac4be46eb2ec10397f696e5adb81aab9bcb0123587924c8dbcb7775eafe3c9a81540f774cb84c1b0da4dd9b672c8ad06d1e57414c4dbf1079e43dfd658ea5753938714cfb70650bac2403d17e1016fab3d605cbc9a504f7e78193bbc81e8012820f0db085068255be826b818d75b1c463237d0b3683b3915b1ffeddbd579634ddacccf7e955f385792e34737a90b0c62bb54782094eef866c475c9266c8ce71371f12d017e6535ef3d464d68e9e5b8ed1d015b87e5f03903a584a4ebd48aac31db613da945d914bbb5cd06a60860f2f6e4e1970ca52f6009057850516d612584b81af8d6fd812ec9a4b2b8411165cffcc17f87e8f301c95610d34f3b3b5a4039ee87112999f43ba147f068466195fface2f1f45918f5ce79d861329111c39e0d8ab23d755c3993c066f965b655c63b731e2e2ec287bfb38c5f41f6081962c3b33c363b9b57658cc6b0853b23ac295623dc277d919a55545afc1d0223474a64e141736d1f8427a0d5a44e210f6830b86329fe18e16f16ba805734c95fe8722bf0a4c5514d809b67a85f29aab51931a576ffc218f9140501b5ce3030a85bd363c1af997c6cc17bcd27a9aa39830716657be0996418ce64f7f8eaa3bd308af464b4d6146c6bfa30e77fc26aa791e04e9fcc188be645b1df4dcfb79da36d5ec898193b91dfa49e4de7d800885b3f3cfa64b319ce066d536878e8f3e0b46c28c76729c5064f023edd268bd4cdae8031ada684f1abf1fa6fcdb3b43067c26696c9e3049e875fa9298d04ab362cf572d76f831c97151bde555c4b1e324cbd1d48c8ae181411c3f60209c46864cad684a5bae71321b35291a2c52d74ee6c99418327087ddb2a701ae1a7ba992884a71c8dbb87084674bd651f67d79e3100ccee16100b5c2b84bf6ec9365ed0dfb1c1cde10fa23ffbd8e5739b0294631be15a909f26aed5e32456bf587f2dec707e2b472a61a5ee72f07b919ce280b1f233c69938fcbbb613cbc4da4d3aa08cd7bc0f70db9d15af6ba2e7e35a8ca752c6c4cc03db822d32a742331abead8444821ae507d97d616ef1ba10804158af622b69376848010de8e9f40336b2448fd9e0f20c57ed9dbab6220eeac6a7285f83d1903be7016aa41398100970f547a97786359ac4c99417a732e3a1888a6791a79426ee6e036900d4da0fdbe1645190406e34e63733cf9b4bce6202a8bce18aefcad52fd55f9b794eb4a1e799eed6405b02660f1a895f02076d262fe62d6a58204634e936467e792f5e2998adf9d5afe651002592df9a804bb9e42bfa992006bfb5e0bf7f5a047df1ad7a7214a998fef8861395e284154468d290670b2706f04fa836260cb16368d22a5c4323731d10d61b5069bea0807074b16ad781e490fda8125ab7bd8cfcd95d19b201857081afadbb878cf7d1117d60397d161663aa5f33602fcada069712ccc985c66b655d913c52a8123bc5e93cd76e27e8d06b9cda4f3be83dd1cb6cdc11eb7861a10cf048352a080b35cfc8920706e00dc5fb276041d4c0824c44bc4dbb061012ad9e1473446cd695b8a46837d6c6b3533be88f30d26e224706d19d561ba21739c3492caedab1d9c55c6527934477dd5d61bdb51f3b6b7a79a502509893cea39a08b510ece56633d41d714b48f1d8817254b8d0c585261b9ca6d1399a46b027169fac9db42d8fe3d9bd58dfac38f8d07c59020b5769697efa998b57c2fced426c4cd8033c4d788bf9db6891848a4e478a2b890438b7b203ca7c0f108acb2e544cfec59769b9638c5a369a150017b735e7b969e04d6947059270691c4f1ea61253dd3b0545da22cbc94d2669f04c5a99958df4bf0f8ec3c5c603f93675908ccff0efbcf1cc40a86dbcbcec690c51d5591d6854a9564d1b9634000c9c392cca7c2b9bddf9f3b11b101d28e083ca25ca1b6c753e805fab75cd76aba405c8d7fc935a7ed801175053118d95fa0709adc781644a159b8f3822f28f963fe76a15d7e21e0b5e9594ba99701937c6a1066e1cf37a444f7e9a60722b0437bc7b5327d37e534dca8394901a0d829faa694e4ccf542c8dab45f23521ad5091006d36a6c930911f8ea98b891b1ed600712329407c38982ad4f84c59246d1ff74e17aadb06ed0c6a68dfb751759cc968f0f378916b4210506d9628228a7830423bff5672c9ff3a03bff196ddf1d41bb28f207b883b55365c72bc9850c8e7c7ecb3a6b3dd3f2c7151336eb716c791272e123be953b4b365810b9c4689a3cfa354b4277c7b7d6547b0b80efd1a8b9f5ad83d33ad83a8ff9e2dd706b053cac9e34551bf9ab269bae1f5c725cbd5b4be4f6cb4589240de540f81ac88ca39b068a2704e4b9ff4ed3883d5594f806500204eaff20b24159a63d16c3412749316064a013e629c896d27a96b72b766988d326b0c00f76fee6c593f1fec74855c1b44579145309147df05f95abc1a1092c9bd180c7134043979ded9ea2dae1dffd8d8eea377d75004c8875568a3d0517804beddefce657399ec1ddde4388aec04a4be4de2a111456e2cbf3d3d18ad36f5d313c8f1c43b8929b6a7ff7741f3baf4e091075820d67ba29f0cacca47b1b4915b8444d4cbb96057940703d685b6f94f3ba7721edd9a0ade0aac2d1c1cdd7780983895be02f33ea041182581ed4a0b0beafb480a4b558187f5013e0945c4a7720e11bc26a66c8d36cef57b95826eb27e139a73fef0f52ae8c9b670f9e8a2671614836d18f583d4cbae631b87a64c428f44e06ccc55ccc9c1359e3b9d478cf271ab2f3f07b3f172c88a2bb38b75047d7c484572fc2988a55cf949f79395226bdc596157ab438dea9eaf73421c9a7f0db7f6a7c196b98252b0181e0ca60d47407239640bd7401e2b305881b46321cc5197a6ceedd7fa5c28bf154347e3e3cabb7b738c6f5ca8057763d6229f3a63672dbfc2d1b566eb0c6cce394f436a135645409b51ab8427215c969657f826afa394e9644e61712615a4757f56e8d7267642426af3926ce1c7379b2ae582bbfc318ed70417c190cd9998b399dc34461d190942def5c2fc140f12e68af2aca6ea4fd5f6945d459e08636ed2f6e0479c04b077ecc03807d757f0cf81cd311ed92ce47a29da82053b94d92dd9631d75fefe4283cdf46d4115c7bcd6a5e4d75132f5018000876eb8046cada5bcce724d52407cc8e5ae67a04752be434b48d6b492cf3eab38079250ee06409cf056f9499381f04ddb0ee6cc9a4bb641fd12f1308139885535cb6403748110439ff739b1a8b24fc8ef0c3df72a89bdf0c6ee90aef913d8be328983c00c2dd4670600d3e88fc25a28b891769c462a0429eb72b0d06ebe0cece2db8508fb634bbffa58100d333bc759b73692b9b653e166ed2786299d705da096ce83f1d3778610ce92684c0af138d58c9fe2746af09f5266b5e77a1dd6729be313ac6d410e999cd8f058237ae905eaa05315d6652a093cca010f1cb7ef0d37ba9b1c3d6cd0f216c7e6f9e0a2023315c266a654ed231fa37546298cbe2d319819bbf0aa071b064f306c6b1ca9826536b6b39a3297f61eea990e48ff73fad19e736bae1a3bacede48b87dae094f5575ce83f2c7ceac13618edadec09dc7cdd778a5c0b65454b40107598b1720e0f3773f4c50ba5ccde28af65324019d11253636dc51b63205afd76717269f6367435341df3538cb8dbd2accacf3c3a375044b0629776dd9aa249538c5846d0a69cfbec3dc2485f4f26e17c80169aa111b051b8e239f50f5e3dbc571819144954a353c7a4fdb0dd5b6882df12786ec0903c6a51bc5149446f2a8aca6d506226a9c2474302b086d458ca5fa5c7a5f915c50af5ebc7c9929c96eea6405218826e53e4f991de07bff67a978e6c9f98e412db83be4f98825f359089941960b15ef84451a540cbfed4f783b6f85a50137f09b2c589bf2b0cef384698689877dd9b4e9f293fec7958494a67797893fd24416d56d3ef2a0790aef8b351ef0694824e9b69f190356c016ebbf3506c84829eb02bd7465c805a76ceaa0129639b644303166aeeff7ff48e43e4b1d8e7b668a4d9605b88eebfe125fd31fab83300cc69b48145f315af8fa516a61176c42ef049dce77bad2425c4e14e32ce97baa0fbc66165f5d211203f304149a2e1afb64cf5bdc6fc99430ed40e5c4de85aa194139f709c67d1f10efbd800f406976c9eb8afa69e493b3333aad2c69ba0e1ea2132e0561df7cd10137778aae66cb3c5465c35aa4b2dfc8ced7b8b41f1753dab86f6700353e0a713371fd77c884fa08e35dfd0809b2c3d4dfb29bd6d452c6b0f691aa2b86f987d9ff5d151c272978291f5bbd00617af3081f2cc2cda12013727efaf7e86bd00774bca15813246b49738688e3a86769f46d69cc05adf3f78903bebde620af701d8e967c7d91a41934bb132ae99490a3</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Joe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章連結: </span><span class="post-copyright-info"><a href="https://shift093.github.io/2020/12/15/NGC-SETUP-API-KEY/">https://shift093.github.io/2020/12/15/NGC-SETUP-API-KEY/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版權聲明: </span><span class="post-copyright-info">本部落格所有文章除特別聲明外，均採用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 許可協議。轉載請註明來自 <a href="https://shift093.github.io" target="_blank">HTTP/1.1　"200"　OK</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NGC/">NGC</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/12/08/02-Tensorflow%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B3%87%E6%96%99%E9%9B%86/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">02-Tensorflow製作自己的資料集</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/img/ShowIndexStdImg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Joe</div><div class="author-info__description">Segmentation fault</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">標籤</div><div class="length-num">6</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分類</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/shift093"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/shift093" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:shift093@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Thank you for visiting my website.</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目錄</span></div><div class="toc-content toc-div-class" style="display:none"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-number">1.</span> <span class="toc-text">API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#API-Information"><span class="toc-number">1.0.1.</span> <span class="toc-text">API Information</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number">2.</span> <span class="toc-text">Usage</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/15/NGC-SETUP-API-KEY/" title="NGC SETUP &amp; API KEY"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NGC SETUP &amp; API KEY"/></a><div class="content"><a class="title" href="/2020/12/15/NGC-SETUP-API-KEY/" title="NGC SETUP &amp; API KEY">NGC SETUP &amp; API KEY</a><time datetime="2020-12-15T05:53:17.000Z" title="發表於 2020-12-15 13:53:17">2020-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/08/02-Tensorflow%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B3%87%E6%96%99%E9%9B%86/" title="02-Tensorflow製作自己的資料集"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="02-Tensorflow製作自己的資料集"/></a><div class="content"><a class="title" href="/2020/12/08/02-Tensorflow%E8%A3%BD%E4%BD%9C%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B3%87%E6%96%99%E9%9B%86/" title="02-Tensorflow製作自己的資料集">02-Tensorflow製作自己的資料集</a><time datetime="2020-12-08T01:34:40.000Z" title="發表於 2020-12-08 09:34:40">2020-12-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/05/01-Tensorflow1-X-PNASNet%E6%A8%A1%E5%9E%8B/" title="01-Tensorflow1.X-PNASNet模型"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="01-Tensorflow1.X-PNASNet模型"/></a><div class="content"><a class="title" href="/2020/12/05/01-Tensorflow1-X-PNASNet%E6%A8%A1%E5%9E%8B/" title="01-Tensorflow1.X-PNASNet模型">01-Tensorflow1.X-PNASNet模型</a><time datetime="2020-12-05T12:33:56.000Z" title="發表於 2020-12-05 20:33:56">2020-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/04/NVIDIA-Triton-Inference-Server/" title="NVIDIA Triton Inference Server"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NVIDIA Triton Inference Server"/></a><div class="content"><a class="title" href="/2020/12/04/NVIDIA-Triton-Inference-Server/" title="NVIDIA Triton Inference Server">NVIDIA Triton Inference Server</a><time datetime="2020-12-03T17:03:08.000Z" title="發表於 2020-12-04 01:03:08">2020-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/04/NVIDIA-Triton-Inference-Server2/" title="NVIDIA Triton Inference Server II"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="NVIDIA Triton Inference Server II"/></a><div class="content"><a class="title" href="/2020/12/04/NVIDIA-Triton-Inference-Server2/" title="NVIDIA Triton Inference Server II">NVIDIA Triton Inference Server II</a><time datetime="2020-12-03T17:03:08.000Z" title="發表於 2020-12-04 01:03:08">2020-12-04</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Joe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主題 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="閱讀模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="淺色和深色模式轉換"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="設定"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目錄"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到頂部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>
